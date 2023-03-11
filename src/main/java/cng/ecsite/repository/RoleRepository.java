@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface RoleRepository extends JpaRepository<Role, Long> {
     @Query(value = "quey", nativeQuery = true)
     Role findROLE(String role);
+
+    Role findByName(String admin);
 }

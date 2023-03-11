@@ -12,7 +12,7 @@ public class AdminDto {
     private String firstName;
     @Size(min = 3, max = 10, message = "Invalid first name! ( 3 - 10 characters)")
     private String lastName;
-    @Size(min = 3, max = 10, message = "Invalid first name! ( 3 - 10 characters)")
+
     private String username;
     @Size(min = 3, max = 10, message = "Invalid first name! ( 3 - 10 characters)")
     private String password;
