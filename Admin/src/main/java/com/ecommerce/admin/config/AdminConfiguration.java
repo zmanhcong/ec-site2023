@@ -38,6 +38,7 @@ public class AdminConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
+    //This function use when you login or logout
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/*").permitAll()
@@ -45,15 +46,15 @@ public class AdminConfiguration extends WebSecurityConfigurerAdapter {
                 .hasAuthority("ADMIN")
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/do-login")
-                .defaultSuccessUrl("/index")
+                .loginPage("/login")  //login with this URL
+                .loginProcessingUrl("/do-login") //when pass ID and password, th:action in thymeleaf will send request to "do-login"
+                .defaultSuccessUrl("/index") //login success -> redirect to URL: index.html
                 .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))  //access to UTL : /logout, it will logout.
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }

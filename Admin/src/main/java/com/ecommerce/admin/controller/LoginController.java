@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -32,9 +33,17 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping("/index")
+    public String home() {
+        return "index";
+    }
+
     @GetMapping("/register")
-    public String register(Model model){
+    public String register(Model model, HttpSession session){
         model.addAttribute("adminDto", new AdminDto());
+        if (session.getAttribute("message") != null) {
+            session.removeAttribute("message");
+        }
         return "register";
     }
 
